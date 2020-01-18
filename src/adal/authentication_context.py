@@ -47,7 +47,7 @@ class AuthenticationContext(object):
 
     def __init__(
             self, authority, validate_authority=None, cache=None,
-            api_version='1.0'):
+            api_version='1.0', timeout=None, enable_pii=False, verify_ssl=None, proxies=None):
         '''Creates a new AuthenticationContext object.
 
         By default the authority will be checked against a list of known Azure
@@ -70,11 +70,25 @@ class AuthenticationContext(object):
             Developers are now encouraged to set it as None explicitly,
             which means the underlying API version will be automatically chosen.
             In next major release, this default value will be changed to None.
+        :param timeout: (optional) requests timeout. How long to wait for the server to send
+            data before giving up, as a float, or a `(connect timeout,
+            read timeout) <timeouts>` tuple.
+        :param enable_pii: (optional) Unless this is set to True,
+            there will be no Personally Identifiable Information (PII) written in log.
+        :param verify_ssl: (optional) requests verify. Either a boolean, in which case it 
+            controls whether we verify the server's TLS certificate, or a string, in which 
+            case it must be a path to a CA bundle to use. If this value is not provided, and 
+            ADAL_PYTHON_SSL_NO_VERIFY env varaible is set, behavior is equivalent to 
+            verify_ssl=False.
+        :param proxies: (optional) requests proxies. Dictionary mapping protocol to the URL 
+            of the proxy. See http://docs.python-requests.org/en/master/user/advanced/#proxies
+            for details.
         '''
         self.authority = Authority(authority, validate_authority is None or validate_authority)
         self._oauth2client = None
         self.correlation_id = None
-        env_value = os.environ.get('ADAL_PYTHON_SSL_NO_VERIFY')
+        env_verify = 'ADAL_PYTHON_SSL_NO_VERIFY' not in os.environ
+        verify = verify_ssl if verify_ssl is not None else env_verify
         if api_version is not None:
             warnings.warn(
                 """The default behavior of including api-version=1.0 on the wire
@@ -89,7 +103,10 @@ class AuthenticationContext(object):
         self._call_context = {
             'options': GLOBAL_ADAL_OPTIONS,
             'api_version': api_version,
-            'verify_ssl': None if env_value is None else not env_value # mainly for tracing through proxy
+            'verify_ssl': verify,
+            'proxies':proxies,
+            'timeout':timeout,
+            "enable_pii": enable_pii,
             }
         self._token_requests_with_user_code = {}
         self.cache = cache or TokenCache()
@@ -103,8 +120,9 @@ class AuthenticationContext(object):
     def options(self, val):
         self._call_context['options'] = val
 
-    def _acquire_token(self, token_func):
-        self._call_context['log_context'] = log.create_log_context(self.correlation_id)
+    def _acquire_token(self, token_func, correlation_id=None):
+        self._call_context['log_context'] = log.create_log_context(
+            correlation_id or self.correlation_id, self._call_context.get('enable_pii', False))
         self.authority.validate(self._call_context)
         return token_func(self)
 
@@ -238,7 +256,8 @@ class AuthenticationContext(object):
             should be localized to.
         :returns: dict contains code and uri for users to login through browser.
         '''
-        self._call_context['log_context'] = log.create_log_context(self.correlation_id)
+        self._call_context['log_context'] = log.create_log_context(
+            self.correlation_id, self._call_context.get('enable_pii', False))
         self.authority.validate(self._call_context)
         code_request = CodeRequest(self._call_context, self, client_id, resource)
         return code_request.get_user_code_info(language)
@@ -254,8 +273,6 @@ class AuthenticationContext(object):
         :returns: dict with several keys, include "accessToken" and
             "refreshToken".
         '''
-        self._call_context['log_context'] = log.create_log_context(self.correlation_id)
-
         def token_func(self):
             token_request = TokenRequest(self._call_context, self, client_id, resource)
 
@@ -270,7 +287,7 @@ class AuthenticationContext(object):
             
             return token
 
-        return self._acquire_token(token_func)
+        return self._acquire_token(token_func, user_code_info.get('correlation_id', None))
 
     def cancel_request_to_get_token_with_device_code(self, user_code_info):
         '''Cancels the polling request to get token with device code. 
