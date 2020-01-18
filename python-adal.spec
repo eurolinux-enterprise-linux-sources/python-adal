@@ -18,7 +18,7 @@ authenticate to AAD in order to access AAD protected web resources.
 
 Name:           python-%{srcname}
 Version:        0.6.0
-Release:        0%{?dist}.1
+Release:        1%{?dist}
 Summary:        %{common_summary}
 
 Group:          System Environment/Libraries
@@ -117,9 +117,9 @@ rm tests/{test_client_credentials.py,test_e2e_examples.py}
 
 
 %changelog
-* Wed May 15 2019 Oyvind Albrigtsen <oalbrigt@redhat.com> - 0.6.0-0.1
+* Mon May 13 2019 Oyvind Albrigtsen <oalbrigt@redhat.com> - 0.6.0-1
 - Update to 0.6.0
-  Resolves: rhbz#1709107
+  Resolves: rhbz#1707863
 
 * Sun Sep 03 2017 Mohamed El Morabity <melmorabity@fedoraproject.org> - 0.4.7-1
 - Update to 0.4.7
