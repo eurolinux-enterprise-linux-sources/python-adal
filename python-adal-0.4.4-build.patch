@@ -1,0 +1,12 @@
+diff -up ./setup.py.orig ./setup.py
+--- ./setup.py.orig	2017-01-11 00:03:45.000000000 +0100
++++ ./setup.py	2017-01-11 14:08:31.529364574 +0100
+@@ -73,7 +73,7 @@ setup(
+     install_requires=[
+         'PyJWT>=1.0.0',
+         'requests>=2.0.0',
+-        'python-dateutil>=2.1.0',
++        'python-dateutil',
+         'cryptography>=1.1.0'
+     ]
+ )

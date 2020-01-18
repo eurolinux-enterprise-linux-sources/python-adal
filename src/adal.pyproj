@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>a3fd1cd9-55d1-4dc7-a7e3-124dcfd9c010</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>tests\__init__.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>adal</Name>
+    <RootNamespace>adal</RootNamespace>
+    <InterpreterId>{4e6b690d-870d-4e48-b24e-ba6f9fe36da5}</InterpreterId>
+    <InterpreterVersion>3.5</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="adal\argument.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\authentication_context.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\authentication_parameters.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\authority.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\cache_driver.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\code_request.py" />
+    <Compile Include="adal\constants.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\log.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\mex.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\oauth2_client.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\self_signed_jwt.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\token_cache.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\token_request.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\adal_error.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\user_realm.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\util.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\wstrust_request.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\wstrust_response.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\xmlutil.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="adal\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sample\certificate_credentials_sample.py" />
+    <Compile Include="sample\client_credentials_sample.py" />
+    <Compile Include="sample\device_code_sample.py" />
+    <Compile Include="sample\refresh_token_sample.py" />
+    <Compile Include="sample\website_sample.py" />
+    <Compile Include="setup.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\config_sample.py" />
+    <Compile Include="tests\test_e2e_examples.py" />
+    <Compile Include="tests\test_authority.py" />
+    <Compile Include="tests\test_authorization_code.py" />
+    <Compile Include="tests\test_client_credentials.py" />
+    <Compile Include="tests\test_log.py" />
+    <Compile Include="tests\test_mex.py" />
+    <Compile Include="tests\test_refresh_token.py" />
+    <Compile Include="tests\test_self_signed_jwt.py" />
+    <Compile Include="tests\test_username_password.py" />
+    <Compile Include="tests\test_user_realm.py" />
+    <Compile Include="tests\test_wstrust_request.py" />
+    <Compile Include="tests\test_wstrust_response.py" />
+    <Compile Include="tests\test_authentication_parameters.py" />
+    <Compile Include="tests\util.py" />
+    <Compile Include="tests\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="adal\" />
+    <Folder Include="sample\" />
+    <Folder Include="tests\" />
+    <Folder Include="tests\data\" />
+    <Folder Include="tests\mex\" />
+    <Folder Include="tests\wstrust\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="LICENSE" />
+    <Content Include="pylintrc" />
+    <Content Include="README.md" />
+    <Content Include="requirements.txt" />
+    <Content Include="setup.cfg" />
+    <Content Include="tests\data\self-signed-cert.pem" />
+    <Content Include="tests\mex\address.insecure.xml" />
+    <Content Include="tests\mex\archan.us.mex.xml" />
+    <Content Include="tests\mex\arupela.mex.xml" />
+    <Content Include="tests\mex\common.mex.xml" />
+    <Content Include="tests\mex\microsoft.mex.xml" />
+    <Content Include="tests\mex\noaddress.xml" />
+    <Content Include="tests\mex\nobinding.port.xml" />
+    <Content Include="tests\mex\noname.binding.xml" />
+    <Content Include="tests\mex\nosoapaction.xml" />
+    <Content Include="tests\mex\nosoaptransport.xml" />
+    <Content Include="tests\mex\nouri.ref.xml" />
+    <Content Include="tests\mex\syntax.notrelated.mex.xml" />
+    <Content Include="tests\mex\syntax.related.mex.xml" />
+    <Content Include="tests\mex\usystech.mex.xml" />
+    <Content Include="tests\wstrust\common.base64.encoded.assertion.txt" />
+    <Content Include="tests\wstrust\common.rstr.xml" />
+    <Content Include="tests\wstrust\RST.xml" />
+    <Content Include="tests\wstrust\RSTR.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env27\">
+      <Id>{035af01c-b03d-490d-8832-e92e10c726f3}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>2.7</Version>
+      <Description>env27 (Python 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+    <Interpreter Include="env34\">
+      <Id>{ffb82c48-90d8-4438-b920-50f90148b4d6}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>3.4</Version>
+      <Description>env34 (Python 3.4)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+    <Interpreter Include="env35\">
+      <Id>{4e6b690d-870d-4e48-b24e-ba6f9fe36da5}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>3.5</Version>
+      <Description>env35 (Python 3.5)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
